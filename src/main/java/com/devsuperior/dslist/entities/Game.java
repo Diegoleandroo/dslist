@@ -7,73 +7,65 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.Table;
 
-
-@Entity //Configurar a classe java que sera equivalente a uma tabela do banco relacional 
-@Table(name ="tb_game")   
+@Entity(name = "tb_game")
 public class Game {
 	
 	@Id// Id será chave Primária
 	@GeneratedValue(strategy= GenerationType.IDENTITY) // Que seja autoimplentado para o banco de dados
-	
-	@Column(name = "id", nullable = false)
 	private Long id;
-	@Column(name = "title", nullable = false)
 	private String title;
-	
 	// Year por ser uma palavra reservada do sql no banco de dados,poderá causar conflito
-	@Column(name= "game_year" ,nullable = false) //Está Contumizando, pois mudará o nome quando for criar no banco de dados
-	
+	@Column(name= "game_year") //Está Contumizando, pois mudará o nome quando for criar no banco de dados
 	private Integer year;
-	@Column(name = "genre", nullable = false)
 	private String genre;
-	
-	@Column(name = "platform", nullable = false)
-	private String platform;
-	
-	 @Column(name = "img_url", nullable = false)
+	private String platforms;
+	private Double score;
 	private String imgUrl;
 	
-	  @Column(name = "short_description", nullable = false, length = 255) 
+	@Column(columnDefinition = "TEXT")// 
 	private String shortDescription;
 	
-	  @Column(name = "long_description", nullable = false, length = 255)  
+	@Column(columnDefinition = "TEXT")
 	private String longDescription;
-	
-	
+
 	
 	public Game() {
+		
+		
 		
 	}
 
 
-
-	public Game(Long id, String title, Integer year, String genre, String platform, String imgUrl, String shortDescription,
-			String longDescription) {
+	public Game(Long id, String title, Integer year, String genre, String platforms, Double score,  String imgUrl,
+			String shortDescription, String longDescription) {
 		super();
 		this.id = id;
 		this.title = title;
 		this.year = year;
 		this.genre = genre;
-		this.platform = platform;
+		this.platforms = platforms;
+		this.score = score;
 		this.imgUrl = imgUrl;
 		this.shortDescription = shortDescription;
 		this.longDescription = longDescription;
+
 	}
-
-
-
+	
+	
+	
 	public Long getId() {
+		
 		return id;
+		
 	}
-
-
-
+	
+	
 	public void setId(Long id) {
+		
 		this.id = id;
+		
 	}
-
 
 
 	public String getTitle() {
@@ -81,11 +73,9 @@ public class Game {
 	}
 
 
-
 	public void setTitle(String title) {
 		this.title = title;
 	}
-
 
 
 	public Integer getYear() {
@@ -93,37 +83,43 @@ public class Game {
 	}
 
 
-
 	public void setYear(Integer year) {
 		this.year = year;
 	}
-	
-	
+
+
 	public String getGenre() {
-		
 		return genre;
-		
 	}
-	
-	
-	public void setGenre(String genre ) {
-		
+
+
+	public void setGenre(String genre) {
 		this.genre = genre;
-		
 	}
-	
 
 
 	public String getPlatform() {
-		return platform;
+		return platforms;
 	}
 
 
-
-	public void setPlatform(String platform) {
-		this.platform = platform;
+	public void setPlatform(String platforms) {
+		this.platforms = platforms;
 	}
-
+	
+	public Double getScore() {
+		
+		return score;
+		
+	}
+	
+	
+	public void setScore(Double score) {
+		
+		this.score = score;
+		
+	}
+	
 
 
 	public String getImgUrl() {
@@ -131,11 +127,9 @@ public class Game {
 	}
 
 
-
-	public void setImUrl(String imgUrl) {
+	public void setImgUrl(String imgUrl) {
 		this.imgUrl = imgUrl;
 	}
-
 
 
 	public String getShortDescription() {
@@ -143,11 +137,9 @@ public class Game {
 	}
 
 
-
 	public void setShortDescription(String shortDescription) {
 		this.shortDescription = shortDescription;
 	}
-
 
 
 	public String getLongDescription() {
@@ -155,20 +147,18 @@ public class Game {
 	}
 
 
-
 	public void setLongDescription(String longDescription) {
 		this.longDescription = longDescription;
 	}
 
 
-
 	@Override
-	public int hashCode() { //Metodos para comparar se são iguais ou não
+	public int hashCode() {
 		return Objects.hash(id);
 	}
 
 
-
+	
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
