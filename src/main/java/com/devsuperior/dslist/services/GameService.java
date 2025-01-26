@@ -5,9 +5,12 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.devsuperior.dslist.dto.GameDTO;
 import com.devsuperior.dslist.dto.GameMinDTO;
 import com.devsuperior.dslist.entities.Game;
 import com.devsuperior.dslist.repositories.GameRepository;
+
+import jakarta.transaction.Transactional;
 
 //Componentes de Sistemas 
 // Service or Component -> Registra os componetes
@@ -21,6 +24,16 @@ public class GameService {
 	@Autowired
 	private GameRepository gameRepository;
 	
+	@org.springframework.transaction.annotation.Transactional(readOnly = true)//Assegurando que não vou fazer nenhuma operação de escrita  
+	public GameDTO findById(Long id) { // Método para buscar pelo ID
+		
+		Game result = gameRepository.findById(id).get();
+		
+		return new GameDTO(result);
+		
+	}
+	
+	@org.springframework.transaction.annotation.Transactional(readOnly = true)
 	public List <GameMinDTO> findAll(){ // findAll -> Buscar todos
 		
 		 List <Game> result = gameRepository.findAll(); //Isso ja gera uma consulta do dados, que gerara todos os games

@@ -4,7 +4,7 @@ import com.devsuperior.dslist.entities.Game;
 
 public class GameMinDTO {
 
-	// 
+	// Versão do game, mas com so mente 5 dados
 	
 	private Long id;
 	private String title;
