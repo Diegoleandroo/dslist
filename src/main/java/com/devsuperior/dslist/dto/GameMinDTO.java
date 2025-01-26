@@ -34,7 +34,7 @@ public class GameMinDTO {
 
 		id = projection.getId(); // Argummentos
 		title = projection.getTitle();
-		year = projection.getYear();
+		year = projection.getGameYear();
 		imgUrl = projection.getImgUrl();
 		shortDescription = projection.getShortDescription();
 	}
