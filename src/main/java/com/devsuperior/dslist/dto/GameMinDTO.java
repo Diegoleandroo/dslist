@@ -4,6 +4,7 @@ import com.devsuperior.dslist.entities.Game;
 
 public class GameMinDTO {
 
+	// 
 	
 	private Long id;
 	private String title;
@@ -19,9 +20,10 @@ public class GameMinDTO {
 	}
 
 
-	public GameMinDTO(Game entity) { // Instanciamento da classe Game
+	public GameMinDTO(Game entity) { // Quer dizer que o construtor recebe as entidades, instanciando a classe 
+		                             // Game
 	
-		id = entity.getId();
+		id = entity.getId(); // Argummentos
 		title = entity.getTitle();
 		year = entity.getYear();
 		imgUrl = entity.getImgUrl();

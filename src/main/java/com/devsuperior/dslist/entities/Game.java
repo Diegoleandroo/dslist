@@ -7,8 +7,10 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.Table;
 
-@Entity(name = "tb_game")
+@Entity
+@Table(name = "tb_game")//Create table -> Nome da tabela, esses atributos serão gerados no banco 
 public class Game {
 	
 	@Id// Id será chave Primária
@@ -22,12 +24,14 @@ public class Game {
 	private String platforms;
 	private Double score;
 	private String imgUrl;
-	
-	@Column(columnDefinition = "TEXT")// 
-	private String shortDescription;
+	// Embora a String aceite até 4 giga,mas não podemos esquecer que esses atributos serão transporto  para o banco de dados
+	@Column(columnDefinition = "TEXT")  // Por mais que esses 2 atributos possuem a classe String(VARCHAR-255 caracteres o limite), que aproximadamente
+	private String shortDescription;    // Essa instrução faz com que a JPA entenda que esta definido como TEXT e não como VARCHAR
 	
 	@Column(columnDefinition = "TEXT")
 	private String longDescription;
+	
+	
 
 	
 	public Game() {

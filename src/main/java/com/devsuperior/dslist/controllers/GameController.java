@@ -10,14 +10,17 @@ import org.springframework.web.bind.annotation.RestController;
 import com.devsuperior.dslist.dto.GameMinDTO;
 import com.devsuperior.dslist.services.GameService;
 
-@RestController
-@RequestMapping(value = "/games")
+//Essa classe vai disponibilizar o API 
+
+@RestController 
+@RequestMapping(value = "/games") //Configurado o caminho que será correspondido chamando a API
 public class GameController {
 	
-	@Autowired
+	// O controller injeta o  Service
+	@Autowired 
 	private GameService gameService; 
 	
-	@GetMapping
+	@GetMapping // Verbo HTTP (GetMapping-> Buscar)
 	public List<GameMinDTO> findAll(){
 		
 		List<GameMinDTO> result = gameService.findAll();
