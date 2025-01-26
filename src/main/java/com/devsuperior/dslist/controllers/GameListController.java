@@ -4,12 +4,14 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.devsuperior.dslist.dto.GameListDTO;
 import com.devsuperior.dslist.dto.GameMinDTO;
 import com.devsuperior.dslist.services.GameListService;
+import com.devsuperior.dslist.services.GameService;
 
 //Essa classe vai disponibilizar o API 
 
@@ -21,6 +23,9 @@ public class GameListController {
 	@Autowired 
 	private GameListService gameListService; 
 	
+	@Autowired
+	private GameService gameService;
+	
 		
 	
 	@GetMapping // Verbo HTTP (GetMapping-> Buscar)
@@ -28,6 +33,16 @@ public class GameListController {
 		List<GameListDTO> result = gameListService.findAll();
 		return result;
 	}
+	
+	
+	@GetMapping(value = "/{listId}/games") // Verbo HTTP (GetMapping-> Buscar)
+	public List<GameMinDTO> findByList(@PathVariable  Long listId){
+		
+		List<GameMinDTO> result = gameService.findByList(listId);
+		return result;
+	}
+	
+
 	
 
 }

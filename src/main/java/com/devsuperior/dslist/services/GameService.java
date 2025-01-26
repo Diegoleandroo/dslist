@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import com.devsuperior.dslist.dto.GameDTO;
 import com.devsuperior.dslist.dto.GameMinDTO;
 import com.devsuperior.dslist.entities.Game;
+import com.devsuperior.dslist.projections.GameMinProjection;
 import com.devsuperior.dslist.repositories.GameRepository;
 
 import jakarta.transaction.Transactional;
@@ -45,5 +46,20 @@ public class GameService {
 		// stream -> Permite fazer uma operação com sequenciais de dados (map) sequencia para outra
 		   
 	}
+	
+	
+	@org.springframework.transaction.annotation.Transactional(readOnly = true)
+	public List <GameMinDTO> findByList(Long listId){ // findAll -> Buscar todos
+		
+		 List <GameMinProjection> result = gameRepository.searchByList(listId); //Isso ja gera uma consulta do dados, que gerara todos os games
+		 return result.stream().map(x -> new GameMinDTO(x)).toList();
+	
+		// retornando o resultado da chamada DTO 
+		//Isso ja gera uma consulta do dados, que gerara todos os games
+        // O resultado da consulta será convertida para uma tabela de game List <Game> result
+		// stream -> Permite fazer uma operação com sequenciais de dados (map) sequencia para outra
+		   
+	}
+	
 	
 }
